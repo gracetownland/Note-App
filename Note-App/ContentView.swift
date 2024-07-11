@@ -9,14 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+                   
+                    NavigationLink("This is screen number 1") {
+                     Text("Go to screen 1")
+                            
+                    }.navigationTitle("Notes.")
+                           .toolbar{
+                               ToolbarItem() {
+                                                          NavigationLink(
+                                                               destination: Text("Screen 2"),
+                                                               label: {
+                                                                  Image(systemName: "plus")
+                                                              }
+                                                          )
+                                                      }
+
+                           }.toolbarBackground(.visible)
+                    Spacer().frame(height: 10)
+                    NavigationLink("This is screen number 2") {
+                     Text("Go to screen 2")
+                    }
+                   
         }
-        .padding()
-    }
+            }
+
 }
 
 #Preview {
