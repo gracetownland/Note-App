@@ -8,30 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var note = NoteView()
     var body: some View {
-        NavigationStack {
-                   
-                    NavigationLink("This is screen number 1") {
-                     Text("Go to screen 1")
-                            
-                    }.navigationTitle("Notes.")
-                           .toolbar{
-                               ToolbarItem() {
-                                                          NavigationLink(
-                                                               destination: Text("Screen 2"),
-                                                               label: {
-                                                                  Image(systemName: "plus")
-                                                              }
-                                                          )
-                                                      }
-
-                           }.toolbarBackground(.visible)
-                    Spacer().frame(height: 10)
-                    NavigationLink("This is screen number 2") {
-                     Text("Go to screen 2")
-                    }
-                   
+        NavigationStack{
+            note.toolbar{
+                ToolbarItem() {
+                    NavigationLink(
+                        destination:AddNote(),
+                        label: {
+                            Image(systemName: "plus")
+                        }
+                    )
+                }
+                
+            }.toolbarBackground(.visible).toolbarTitleDisplayMode(.large)
         }
+                   
+                  
+                   
+        
             }
 
 }
