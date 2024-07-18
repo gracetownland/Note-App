@@ -20,7 +20,7 @@ class APIFunctions{
     static let functions = APIFunctions()
     func fetchNotes(){
         AF.request("http://192.168.0.179:8081/fetch").response { response in
-            print (response.data)
+//            print (response.data)
             
             let data = String(data: response.data!, encoding: .utf8)
             

@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol DataDelegate {
-    func updateArray(newArray: String)
+   mutating func updateArray(newArray: String)
 }
 
 struct NoteView: View {
@@ -42,11 +42,11 @@ struct NoteView: View {
 
 
 extension NoteView: DataDelegate {
-    func updateArray(newArray: String) {
+    mutating func updateArray(newArray: String) {
         do {
             let decoder = JSONDecoder()
-            var notesArray = try decoder.decode([Note].self, from: newArray.data(using: .utf8)!)
-            print (notesArray)
+             notes = try decoder.decode([Note].self, from: newArray.data(using: .utf8)!)
+            print (notes)
         } catch {
             print("failed to decode!")
         }
