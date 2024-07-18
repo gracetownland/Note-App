@@ -8,16 +8,16 @@
 import SwiftUI
 
 protocol DataDelegate {
-   mutating func updateArray(newArray: String)
+    func updateArray(newArray: String)
 }
 
 struct NoteView: View {
 
-     var notes = [Note]()
-    init() {
-        APIFunctions.functions.delegate = self
-        APIFunctions.functions.fetchNotes()
-    }
+     @State var notes = [Note]()
+//    init() {
+//        APIFunctions.functions.delegate = self
+//        APIFunctions.functions.fetchNotes()
+//    }
     
     var body: some View {
         
@@ -27,10 +27,13 @@ struct NoteView: View {
                     NavigationLink(note.title) {
                      Text("Go to screen 1")
                     }.navigationTitle("Notes.")
-                           
+                        
                   
                       }
                 
+            }.onAppear(){
+                APIFunctions.functions.delegate = self
+                APIFunctions.functions.fetchNotes()
             }
             
                    
@@ -42,7 +45,7 @@ struct NoteView: View {
 
 
 extension NoteView: DataDelegate {
-    mutating func updateArray(newArray: String) {
+     func updateArray(newArray: String) {
         do {
             let decoder = JSONDecoder()
              notes = try decoder.decode([Note].self, from: newArray.data(using: .utf8)!)
