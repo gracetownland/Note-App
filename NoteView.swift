@@ -14,10 +14,7 @@ protocol DataDelegate {
 struct NoteView: View {
 
      @State var notes = [Note]()
-//    init() {
-//        APIFunctions.functions.delegate = self
-//        APIFunctions.functions.fetchNotes()
-//    }
+
     
     var body: some View {
         
